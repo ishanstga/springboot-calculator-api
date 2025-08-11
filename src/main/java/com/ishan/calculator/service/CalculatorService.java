@@ -4,10 +4,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CalculatorService {
-    public int getAddResult(int a, int b){
+    public double getAddResult(double a, double b){
         return a + b;
     }
-    public int getSubResult(int a, int b) {
+    public double getSubResult(double a, double b) {
         return a - b;
     }
+    public double getMulResult(double a, double b) { return a * b; }
+    public double getDivResult(double a, double b) { return a / b; }
 }

@@ -12,11 +12,15 @@ public class CalculatorController {
     }
 
     @GetMapping("add")
-    public int add(@RequestParam int a, @RequestParam int b){
+    public double add(@RequestParam double a, @RequestParam double b){
         return calculatorService.getAddResult(a, b);
     }
     @GetMapping("sub")
-    public int sub(@RequestParam int a, @RequestParam int b){
+    public double sub(@RequestParam double a, @RequestParam double b){
         return calculatorService.getSubResult(a, b);
     }
+    @GetMapping("mul")
+    public double mul(@RequestParam double a, @RequestParam double b) { return calculatorService.getMulResult(a, b); }
+    @GetMapping("div")
+    public double div(@RequestParam double a, @RequestParam double b) { return calculatorService.getDivResult(a, b); }
 }
