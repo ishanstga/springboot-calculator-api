@@ -6,6 +6,10 @@ import com.ishan.calculator.service.CalculatorService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("api/calculator")
 @Validated
@@ -16,6 +20,11 @@ public class CalculatorController {
     }
 
     @GetMapping("calculate")
-    public Result add(@RequestBody Operation op){ return calculatorService.getAddResult(op); }
+    public Result calculate(@RequestBody Operation op){ return calculatorService.getAddResult(op); }
+
+    @GetMapping("history")
+    public ArrayList<Result> history(){
+        return calculatorService.getHistory();
+    }
 
 }

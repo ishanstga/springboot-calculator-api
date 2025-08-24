@@ -6,6 +6,8 @@ import com.ishan.calculator.repository.OperationRepository;
 import com.ishan.calculator.repository.ResultRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class CalculatorService {
     private final OperationRepository operationRepository;
@@ -31,4 +33,7 @@ public class CalculatorService {
         return result;
     }
 
+    public ArrayList<Result> getHistory() {
+        return new ArrayList<Result>(resultRepository.findAll());
+    }
 }
