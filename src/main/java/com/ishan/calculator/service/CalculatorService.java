@@ -1,15 +1,34 @@
 package com.ishan.calculator.service;
 
+import com.ishan.calculator.model.Operation;
+import com.ishan.calculator.model.Result;
+import com.ishan.calculator.repository.OperationRepository;
+import com.ishan.calculator.repository.ResultRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CalculatorService {
-    public double getAddResult(double a, double b){
-        return a + b;
+    private final OperationRepository operationRepository;
+    private final ResultRepository resultRepository;
+
+    public CalculatorService(OperationRepository operationRepository, ResultRepository resultRepository) {
+        this.operationRepository = operationRepository;
+        this.resultRepository = resultRepository;
     }
-    public double getSubResult(double a, double b) {
-        return a - b;
+
+    public Result getAddResult(Operation op){
+        operationRepository.save(op);
+        double opResult;
+        switch (op.getOperation()) {
+            case "+" -> opResult = op.getValueOne() + op.getValueTwo();
+            case "-" -> opResult = op.getValueOne() - op.getValueTwo();
+            case "*" -> opResult = op.getValueOne() * op.getValueTwo();
+            case "/" -> opResult = op.getValueOne() / op.getValueTwo();
+            default -> opResult = 0;
+        }
+        Result result = new Result(op.getId(), op.getValueOne(), op.getValueTwo(), op.getOperation(), opResult);
+        resultRepository.save(result);
+        return result;
     }
-    public double getMulResult(double a, double b) { return a * b; }
-    public double getDivResult(double a, double b) { return a / b; }
+
 }

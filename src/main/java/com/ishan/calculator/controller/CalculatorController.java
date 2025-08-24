@@ -1,26 +1,21 @@
 package com.ishan.calculator.controller;
 
+import com.ishan.calculator.model.Operation;
+import com.ishan.calculator.model.Result;
 import com.ishan.calculator.service.CalculatorService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/calculator")
+@Validated
 public class CalculatorController {
     private final CalculatorService calculatorService;
     public CalculatorController(CalculatorService calculatorService){
         this.calculatorService = calculatorService;
     }
 
-    @GetMapping("add")
-    public double add(@RequestParam double a, @RequestParam double b){
-        return calculatorService.getAddResult(a, b);
-    }
-    @GetMapping("sub")
-    public double sub(@RequestParam double a, @RequestParam double b){
-        return calculatorService.getSubResult(a, b);
-    }
-    @GetMapping("mul")
-    public double mul(@RequestParam double a, @RequestParam double b) { return calculatorService.getMulResult(a, b); }
-    @GetMapping("div")
-    public double div(@RequestParam double a, @RequestParam double b) { return calculatorService.getDivResult(a, b); }
+    @GetMapping("calculate")
+    public Result add(@RequestBody Operation op){ return calculatorService.getAddResult(op); }
+
 }
