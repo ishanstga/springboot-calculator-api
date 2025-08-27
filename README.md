@@ -50,10 +50,10 @@ The application performs basic mathematical operations (add, subtract, multiply,
 Endpoints
 | Method | Endpoint | Description |
 | :---         |     :---:      |          ---: |
-| GET | /api/calculate |	Perform a calculation |
-| GET	| /api/history | Get all calculation logs |
+| GET | /api/calculator/calculate |	Perform a calculation |
+| GET	| /api/calculator/history | Get all calculation logs |
 
-Example Request (GET /api/calculate)
+Example Request (GET /api/calculator/calculate)
 ```json
 {
   "valueOne": 25,
